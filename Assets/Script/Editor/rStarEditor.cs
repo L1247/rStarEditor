@@ -5,10 +5,10 @@ using UnityEngine;
 
 #endregion
 
-namespace OpenProperties
+namespace rStar.Editor
 {
     [InitializeOnLoad]
-    public class rStarEditor : Editor
+    public class rStarEditor : UnityEditor.Editor
     {
     #region Public Methods
 

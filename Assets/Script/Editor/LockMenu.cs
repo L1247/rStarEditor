@@ -4,9 +4,9 @@ using UnityEditor;
 
 #endregion
 
-namespace OpenProperties
+namespace rStar.Editor
 {
-    public class LockMenu : Editor
+    public class LockMenu : UnityEditor.Editor
     {
     #region Public Methods
 

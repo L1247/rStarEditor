@@ -6,7 +6,7 @@ using UnityEngine;
 
 #endregion
 
-namespace OpenProperties
+namespace rStar.Editor
 {
     /// <summary>
     ///     https://forum.unity.com/threads/custom-editor-open-new-inspector-window-and-show-asset.1167818/
@@ -15,9 +15,9 @@ namespace OpenProperties
     {
     #region Private Variables
 
-        private Object asset;
-        private Editor assetEditor;
-        private Color  dragColor;
+        private Object             asset;
+        private UnityEditor.Editor assetEditor;
+        private Color              dragColor;
 
     #endregion
 
@@ -26,14 +26,14 @@ namespace OpenProperties
         public static PopUpAssetInspector Create(Object asset)
         {
             if (asset == null) return null;
-            // var popUpAssetInspector = HasOpenInstances<PopUpAssetInspector>()
-            // ? GetWindow<PopUpAssetInspector>()
-            // /*:*/ CreateWindow<PopUpAssetInspector>($"{asset.name} | {asset.GetType().Name}");
-            var popUpAssetInspector = CreateWindow<PopUpAssetInspector>($"{asset.name} | {asset.GetType().Name}");
+            var popUpAssetInspector = HasOpenInstances<PopUpAssetInspector>()
+                    ? GetWindow<PopUpAssetInspector>()
+                    : CreateWindow<PopUpAssetInspector>($"{asset.name} | {asset.GetType().Name}");
+            // var popUpAssetInspector = CreateWindow<PopUpAssetInspector>($"{asset.name} | {asset.GetType().Name}");
             if (popUpAssetInspector.asset == asset) return popUpAssetInspector;
 
             popUpAssetInspector.asset       = asset;
-            popUpAssetInspector.assetEditor = Editor.CreateEditor(asset);
+            popUpAssetInspector.assetEditor = UnityEditor.Editor.CreateEditor(asset);
             popUpAssetInspector.dragColor   = Random.ColorHSV();
             return popUpAssetInspector;
         }

@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 813f9014765e4e88bf46b3a1c1ad554e, type: 3}
   m_Name: MonsterData
-  m_EditorClassIdentifier: Sample:DefaultNamespace:MonsterData
-  a: 
+  m_EditorClassIdentifier: 
   b: 0
   itemData: {fileID: 0}
+  a: 
