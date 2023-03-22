@@ -26,10 +26,11 @@ namespace rStar.Editor
         public static PopUpAssetInspector Create(Object asset)
         {
             if (asset == null) return null;
+            var titleText = $"{asset.name} | {asset.GetType().Name}";
             var popUpAssetInspector = HasOpenInstances<PopUpAssetInspector>()
                     ? GetWindow<PopUpAssetInspector>()
-                    : CreateWindow<PopUpAssetInspector>($"{asset.name} | {asset.GetType().Name}");
-            // var popUpAssetInspector = CreateWindow<PopUpAssetInspector>($"{asset.name} | {asset.GetType().Name}");
+                    : CreateWindow<PopUpAssetInspector>(titleText);
+            popUpAssetInspector.titleContent = new GUIContent(titleText);
             if (popUpAssetInspector.asset == asset) return popUpAssetInspector;
 
             popUpAssetInspector.asset       = asset;

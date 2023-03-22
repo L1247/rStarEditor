@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 813f9014765e4e88bf46b3a1c1ad554e, type: 3}
-  m_Name: MonsterData
+  m_Script: {fileID: 11500000, guid: a32579a409244732bb1e168754cb9e40, type: 3}
+  m_Name: ItemData1
   m_EditorClassIdentifier: 
-  b: 0
-  itemData: {fileID: 11400000, guid: 2e3ccdf5fa1a2b94db8769a897bdc517, type: 2}
-  a: 
+  texture2D: {fileID: 2800000, guid: ab1ff55ea3fcf054fac0f775fd768f9f, type: 3}
