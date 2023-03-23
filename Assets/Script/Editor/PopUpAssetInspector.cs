@@ -1,6 +1,5 @@
 #region
 
-using System.Collections;
 using UnityEditor;
 using UnityEngine;
 
@@ -41,6 +40,11 @@ namespace rStar.Editor
     #endregion
 
     #region Private Methods
+
+        private static void CloseThisWindow()
+        {
+            GetWindow<PopUpAssetInspector>().Close();
+        }
 
         private void ExampleDragDropGUI(Rect dropArea , Object obj)
         {
@@ -90,9 +94,25 @@ namespace rStar.Editor
             }
         }
 
+        private bool IsSomethingWrong()
+        {
+            return asset == null || assetEditor == null;
+        }
+
+        private bool IsTargetNoExist()
+        {
+            return asset == null && assetEditor == null;
+        }
+
         private void OnGUI()
         {
-            if (asset == null || assetEditor == null) return;
+            if (IsTargetNoExist())
+            {
+                CloseThisWindow();
+                return;
+            }
+
+            if (IsSomethingWrong()) return;
             GUI.enabled = false;
             asset       = EditorGUILayout.ObjectField("Asset" , asset , asset.GetType() , false);
             GUI.enabled = true;
@@ -100,20 +120,6 @@ namespace rStar.Editor
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
             assetEditor.OnInspectorGUI();
             EditorGUILayout.EndVertical();
-        }
-
-    #endregion
-
-    #region Nested Types
-
-        public class CustomDragData
-        {
-        #region Public Variables
-
-            public IList originalList;
-            public int   originalIndex;
-
-        #endregion
         }
 
     #endregion
