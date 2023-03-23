@@ -16,7 +16,6 @@ namespace rStar.Editor
 
         private Object             asset;
         private UnityEditor.Editor assetEditor;
-        private Color              dragColor;
 
     #endregion
 
@@ -34,7 +33,6 @@ namespace rStar.Editor
 
             popUpAssetInspector.asset       = asset;
             popUpAssetInspector.assetEditor = UnityEditor.Editor.CreateEditor(asset);
-            popUpAssetInspector.dragColor   = Random.ColorHSV();
         }
 
     #endregion
@@ -57,7 +55,8 @@ namespace rStar.Editor
             // if (currentEventType == EventType.DragExited)
             // DragAndDrop
             // .PrepareStartDrag(); // Clear generic data when user pressed escape. (Unfortunately, DragExited is also called when the mouse leaves the drag area)
-            EditorGUI.DrawRect(dropArea , dragColor);
+            var textFieldStyle = new GUIStyle(GUI.skin.textField) { fontSize = 30 , alignment = TextAnchor.MiddleCenter };
+            EditorGUI.LabelField(dropArea , "Drag Zone" , textFieldStyle);
             if (!dropArea.Contains(currentEvent.mousePosition)) return;
 
             switch (currentEvent.type)
