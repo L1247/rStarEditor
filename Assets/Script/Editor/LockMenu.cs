@@ -10,7 +10,7 @@ namespace rStar.Editor
     {
     #region Public Methods
 
-        [MenuItem("Tools/Toggle Inspector Lock %l")] // Ctrl + L
+        [MenuItem("Tools/rStarEditor/Toggle Inspector Lock %l")] // Ctrl + L
         public static void ToggleInspectorLock()
         {
             ActiveEditorTracker.sharedTracker.isLocked = !ActiveEditorTracker.sharedTracker.isLocked;
