@@ -17,7 +17,7 @@ namespace DefaultNamespace
         private static void DoSomething()
         {
             Debug.Log("DoSomething");
-            var test2 = AssetDatabase.LoadAssetAtPath<ItemData>("Assets/Scenes/Test2.asset");
+            var test2 = AssetDatabase.LoadAssetAtPath<ItemData>("Assets/Data/ItemData1.asset");
             OpenPropertiesEditorWindowDoubleClickListener.OpenInPropertyEditor(test2);
         }
 

@@ -35,7 +35,7 @@ namespace rStar.Editor
 
     #region Constructor
 
-        public ProjectPreferences(string path , SettingsScope scopes , IEnumerable<string> keywords = null) : base(
+        private ProjectPreferences(string path , SettingsScope scopes , IEnumerable<string> keywords = null) : base(
                 path , scopes , keywords) { }
 
     #endregion
@@ -52,6 +52,7 @@ namespace rStar.Editor
 
         public override void OnActivate(string searchContext , VisualElement rootElement)
         {
+            ProjectSetting.instance.Load();
             m_SerializedObject         = new SerializedObject(ProjectSetting.instance);
             displayContentOnMouseHover = m_SerializedObject.FindProperty("displayContentOnMouseHover");
         }
@@ -66,7 +67,11 @@ namespace rStar.Editor
                 displayContentOnMouseHover.boolValue =
                         EditorGUILayout.Toggle(Styles.NumberLabel , displayContentOnMouseHover.boolValue);
 
-                if (EditorGUI.EndChangeCheck()) m_SerializedObject.ApplyModifiedProperties();
+                if (EditorGUI.EndChangeCheck())
+                {
+                    ProjectSetting.instance.SaveSettings();
+                    m_SerializedObject.ApplyModifiedProperties();
+                }
             }
         }
 

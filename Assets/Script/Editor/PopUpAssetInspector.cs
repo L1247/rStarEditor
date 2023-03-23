@@ -23,20 +23,19 @@ namespace rStar.Editor
 
     #region Public Methods
 
-        public static PopUpAssetInspector Create(Object asset)
+        public static void Create(Object asset)
         {
-            if (asset == null) return null;
+            if (asset == null) return;
             var titleText = $"{asset.name} | {asset.GetType().Name}";
             var popUpAssetInspector = HasOpenInstances<PopUpAssetInspector>()
                     ? GetWindow<PopUpAssetInspector>()
                     : CreateWindow<PopUpAssetInspector>(titleText);
             popUpAssetInspector.titleContent = new GUIContent(titleText);
-            if (popUpAssetInspector.asset == asset) return popUpAssetInspector;
+            if (popUpAssetInspector.asset == asset) return;
 
             popUpAssetInspector.asset       = asset;
             popUpAssetInspector.assetEditor = UnityEditor.Editor.CreateEditor(asset);
             popUpAssetInspector.dragColor   = Random.ColorHSV();
-            return popUpAssetInspector;
         }
 
     #endregion

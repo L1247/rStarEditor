@@ -60,9 +60,7 @@ namespace rStar.Editor
                 // GUI.Label(rect , guid);
                 // if (GUI.Button(rect , "-")) PopUpAssetInspector.Create(asset);
 
-                if (middleMouseDown)
-                        // PopUpAssetInspector.Create(asset);
-                    OpenPropertiesEditorWindowDoubleClickListener.OpenInPropertyEditor(asset);
+                if (middleMouseDown) OpenPropertiesEditorWindowDoubleClickListener.OpenInPropertyEditor(asset);
                 if (ProjectSetting.instance.DisplayContentOnMouseHover && e.modifiers == EventModifiers.Alt)
                     PopUpAssetInspector.Create(asset);
             }

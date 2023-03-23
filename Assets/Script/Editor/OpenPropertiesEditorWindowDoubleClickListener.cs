@@ -46,6 +46,7 @@ namespace JD.AssetizerEditor
             {
                 callOpenBuffer[0] = asset;
                 openPropertyEditorInfo.Invoke(null , callOpenBuffer);
+
                 return true;
             }
 
