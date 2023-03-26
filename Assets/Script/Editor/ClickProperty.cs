@@ -22,18 +22,7 @@ namespace rStar.Editor
 
     #endregion
 
-    #region Unity events
-
-        private static void Update() { }
-
-    #endregion
-
     #region Private Methods
-
-        private static void Cleanup()
-        {
-            Debug.Log("hierarchyChanged");
-        }
 
         private static void DrawAssetDetails(string guid , Rect rect)
         {
