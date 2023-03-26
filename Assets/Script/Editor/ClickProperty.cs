@@ -61,8 +61,7 @@ namespace rStar.Editor
                 // if (GUI.Button(rect , "-")) PopUpAssetInspector.Create(asset);
 
                 if (middleMouseDown) OpenPropertiesEditorWindowDoubleClickListener.OpenInPropertyEditor(asset);
-                if (ProjectSetting.instance.DisplayContentOnMouseHover && e.modifiers == EventModifiers.Alt)
-                    PopUpAssetInspector.Create(asset);
+                if (ProjectSetting.instance.DisplayContentOnMouseHover && IsAltDown()) PopUpAssetInspector.Create(asset);
             }
 
             EditorApplication.RepaintProjectWindow();
@@ -85,6 +84,11 @@ namespace rStar.Editor
             texture.SetPixel(0 , 0 , Color.red);
             texture.Apply();
             GUI.DrawTexture(rect , texture , ScaleMode.StretchToFill , false);
+        }
+
+        private static bool IsAltDown()
+        {
+            return Event.current.modifiers == EventModifiers.Alt;
         }
 
     #endregion

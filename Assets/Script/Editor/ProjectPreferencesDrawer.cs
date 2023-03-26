@@ -12,7 +12,7 @@ using UnityEngine.UIElements;
 
 namespace rStar.Editor
 {
-    public class ProjectPreferences : SettingsProvider
+    public class ProjectPreferencesDrawer : SettingsProvider
     {
     #region Private Variables
 
@@ -20,8 +20,11 @@ namespace rStar.Editor
         {
         #region Public Variables
 
-            public static readonly GUIContent NumberLabel =
-                    EditorGUIUtility.TrTextContent("Display Content On Mouse Hover" , "Modify Number");
+            public static readonly GUIContent DisplayContentOnMouseHoverLabel =
+                    EditorGUIUtility.TrTextContent("Display Content On Mouse Hover" , "On mouse hover asset to display the content");
+
+            public static readonly GUIContent EscToCloseWindowLabel =
+                    EditorGUIUtility.TrTextContent("Esc To Close Window" , "Press esc key to close current selected window");
 
             public static readonly GUIContent StringsLabel = EditorGUIUtility.TrTextContent("Strings" , "Modify Strings");
 
@@ -30,12 +33,13 @@ namespace rStar.Editor
 
         private SerializedObject   m_SerializedObject;
         private SerializedProperty displayContentOnMouseHover;
+        private SerializedProperty escToCloseWindow;
 
     #endregion
 
     #region Constructor
 
-        private ProjectPreferences(string path , SettingsScope scopes , IEnumerable<string> keywords = null) : base(
+        private ProjectPreferencesDrawer(string path , SettingsScope scopes , IEnumerable<string> keywords = null) : base(
                 path , scopes , keywords) { }
 
     #endregion
@@ -45,8 +49,8 @@ namespace rStar.Editor
         [SettingsProvider]
         public static SettingsProvider CreateMySingletonProvider()
         {
-            var provider = new ProjectPreferences("rStarEditor/ProjectSetting" , SettingsScope.User ,
-                                                  GetSearchKeywordsFromGUIContentProperties<Styles>());
+            var provider = new ProjectPreferencesDrawer("rStarEditor/ProjectSetting" , SettingsScope.User ,
+                                                        GetSearchKeywordsFromGUIContentProperties<Styles>());
             return provider;
         }
 
@@ -55,6 +59,7 @@ namespace rStar.Editor
             ProjectSetting.instance.Load();
             m_SerializedObject         = new SerializedObject(ProjectSetting.instance);
             displayContentOnMouseHover = m_SerializedObject.FindProperty("displayContentOnMouseHover");
+            escToCloseWindow           = m_SerializedObject.FindProperty("escToCloseWindow");
         }
 
         public override void OnGUI(string searchContext)
@@ -65,12 +70,13 @@ namespace rStar.Editor
                 EditorGUI.BeginChangeCheck();
 
                 displayContentOnMouseHover.boolValue =
-                        EditorGUILayout.Toggle(Styles.NumberLabel , displayContentOnMouseHover.boolValue);
-
+                        EditorGUILayout.Toggle(Styles.DisplayContentOnMouseHoverLabel , displayContentOnMouseHover.boolValue);
+                escToCloseWindow.boolValue =
+                        EditorGUILayout.Toggle(Styles.EscToCloseWindowLabel , escToCloseWindow.boolValue);
                 if (EditorGUI.EndChangeCheck())
                 {
-                    ProjectSetting.instance.SaveSettings();
                     m_SerializedObject.ApplyModifiedProperties();
+                    ProjectSetting.instance.SaveSettings();
                 }
             }
         }

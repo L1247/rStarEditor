@@ -1,5 +1,6 @@
 #region
 
+using Script.Editor;
 using UnityEditor;
 using UnityEngine;
 
@@ -105,6 +106,9 @@ namespace rStar.Editor
 
         private void OnGUI()
         {
+            if (focusedWindow == this && Event.current.keyCode == KeyCode.Escape && ProjectSetting.instance.EscToCloseWindow)
+                focusedWindow.Close();
+
             if (IsTargetNoExist())
             {
                 CloseThisWindow();
