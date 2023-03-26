@@ -45,6 +45,15 @@ namespace rStar.Editor
             GetWindow<PopUpAssetInspector>().Close();
         }
 
+        private void DrawQuad(Rect position , Color color)
+        {
+            var texture = new Texture2D(1 , 1);
+            texture.SetPixel(0 , 0 , color);
+            texture.Apply();
+            GUI.skin.box.normal.background = texture;
+            GUI.Box(position , GUIContent.none);
+        }
+
         private void ExampleDragDropGUI(Rect dropArea , Object obj)
         {
             // Cache References:
@@ -116,9 +125,12 @@ namespace rStar.Editor
             }
 
             if (IsSomethingWrong()) return;
-            GUI.enabled = false;
-            asset       = EditorGUILayout.ObjectField("Asset" , asset , asset.GetType() , false);
-            GUI.enabled = true;
+            GUI.backgroundColor = focusedWindow == this ? new Color(0.02f , 0.98f , 1f) : Color.white;
+            GUI.enabled         = false;
+            asset               = EditorGUILayout.ObjectField("Asset" , asset , asset.GetType() , false);
+            GUI.enabled         = true;
+            // if (focusedWindow == this) EditorGUI.DrawRect(new Rect(0 , 0 , position.width , position.height) , new Color(0.02f , 0.98f , 1f , 0.09f));
+            // EditorGUITools.DrawRect(new Rect(0 , 0 , position.width , position.height) , new Color(0.5f , 0.5f , 0.5f , 1));
             ExampleDragDropGUI(EditorGUILayout.GetControlRect(GUILayout.Height(100)) , asset);
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
             assetEditor.OnInspectorGUI();
