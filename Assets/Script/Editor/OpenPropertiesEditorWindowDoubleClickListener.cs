@@ -29,29 +29,26 @@ namespace JD.AssetizerEditor
 
         public static bool OpenInPropertyEditor(Object asset)
         {
-            if (openPropertyEditorInfo == null)
-            {
-                var propertyEditorType = typeof(Editor).Assembly.GetType("UnityEditor.PropertyEditor");
+            // if (openPropertyEditorInfo == null)
+            // {
+            //     var propertyEditorType = typeof(Editor).Assembly.GetType("UnityEditor.PropertyEditor");
+            //
+            //     // Get specific method, since there is an overload starting with Unity 2021.2
+            //     openPropertyEditorInfo = propertyEditorType.GetMethod(
+            //             "OpenPropertyEditor" ,
+            //             BindingFlags.Static | BindingFlags.NonPublic ,
+            //             null ,
+            //             callTypes ,
+            //             null);
+            // }
 
-                // Get specific method, since there is an overload starting with Unity 2021.2
-                openPropertyEditorInfo = propertyEditorType.GetMethod(
-                        "OpenPropertyEditor" ,
-                        BindingFlags.Static | BindingFlags.NonPublic ,
-                        null ,
-                        callTypes ,
-                        null);
-            }
+            if (asset is SceneAsset) return false;
 
-            if (openPropertyEditorInfo != null)
-            {
-                EditorUtility.OpenPropertyEditor(asset);
-                // callOpenBuffer[0] = asset;
-                // openPropertyEditorInfo.Invoke(null , callOpenBuffer);
+            EditorUtility.OpenPropertyEditor(asset);
+            // callOpenBuffer[0] = asset;
+            // openPropertyEditorInfo.Invoke(null , callOpenBuffer);
 
-                return true;
-            }
-
-            return false;
+            return true;
         }
 
     #endregion
