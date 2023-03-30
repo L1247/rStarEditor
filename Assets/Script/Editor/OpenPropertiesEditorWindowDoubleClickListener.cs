@@ -1,14 +1,12 @@
 #region
 
-using System;
-using System.Reflection;
 using UnityEditor;
 using UnityEditor.Callbacks;
-using Object = UnityEngine.Object;
+using UnityEngine;
 
 #endregion
 
-namespace JD.AssetizerEditor
+namespace Script.Editor
 {
     /// <summary>
     ///     Listens <see cref="OnOpenAssetAttribute" /> (order 100) for everything except folders.
@@ -17,37 +15,12 @@ namespace JD.AssetizerEditor
     /// </summary>
     public static class OpenPropertiesEditorWindowDoubleClickListener
     {
-    #region Private Variables
-
-        private static          MethodInfo openPropertyEditorInfo;
-        private static readonly Type[]     callTypes      = { typeof(Object) , typeof(bool) };
-        private static readonly object[]   callOpenBuffer = { null , true };
-
-    #endregion
-
     #region Public Methods
 
         public static bool OpenInPropertyEditor(Object asset)
         {
-            // if (openPropertyEditorInfo == null)
-            // {
-            //     var propertyEditorType = typeof(Editor).Assembly.GetType("UnityEditor.PropertyEditor");
-            //
-            //     // Get specific method, since there is an overload starting with Unity 2021.2
-            //     openPropertyEditorInfo = propertyEditorType.GetMethod(
-            //             "OpenPropertyEditor" ,
-            //             BindingFlags.Static | BindingFlags.NonPublic ,
-            //             null ,
-            //             callTypes ,
-            //             null);
-            // }
-
             if (asset is SceneAsset) return false;
-
             EditorUtility.OpenPropertyEditor(asset);
-            // callOpenBuffer[0] = asset;
-            // openPropertyEditorInfo.Invoke(null , callOpenBuffer);
-
             return true;
         }
 

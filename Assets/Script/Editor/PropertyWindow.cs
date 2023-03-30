@@ -1,6 +1,5 @@
 #region
 
-using JD.AssetizerEditor;
 using Script.Editor;
 using UnityEditor;
 using UnityEditorInternal;
@@ -11,51 +10,38 @@ using UnityEngine;
 namespace rStar.Editor
 {
     [InitializeOnLoad]
-    public static class ClickProperty
+    public static class PropertyWindow
     {
     #region Constructor
 
-        static ClickProperty()
+        static PropertyWindow()
         {
-            EditorApplication.projectWindowItemOnGUI += DrawAssetDetails;
+            EditorApplication.hierarchyWindowItemOnGUI       += DrawAssetDetails;
+            EditorApplication.projectWindowItemInstanceOnGUI += DrawAssetDetails;
         }
 
     #endregion
 
     #region Private Methods
 
-        private static void DrawAssetDetails(string guid , Rect rect)
+        private static void DrawAssetDetails(int instanceID , Rect rect)
         {
             if (InternalEditorUtility.isApplicationActive == false) return;
             // Debug.Log($"{guid}");
-            var e = Event.current;
-            // if (e.isMouse)
-            // {
+            var e               = Event.current;
             var middleMouseDown = e.button == 2 && e.type == EventType.MouseDown;
             var mousePosition   = e.mousePosition;
             var contains        = rect.Contains(mousePosition);
 
             if (contains)
             {
-                var path  = AssetDatabase.GUIDToAssetPath(guid);
-                var asset = AssetDatabase.LoadMainAssetAtPath(path);
-                // Debug.Log($"{asset}");
-                // Right align label:
-
+                var hoveredObject = EditorUtility.InstanceIDToObject(instanceID);
                 DrawQuad(rect , Color.red);
-                // const int width = 100;
-                // rect.x     += rect.width - width;
-                // rect.width =  width;
-                // GUI.Label(rect , guid);
-                // if (GUI.Button(rect , "-")) PopUpAssetInspector.Create(asset);
-
-                if (middleMouseDown) OpenPropertiesEditorWindowDoubleClickListener.OpenInPropertyEditor(asset);
-                if (ProjectSetting.instance.DisplayContentOnMouseHover && IsAltDown()) PopUpAssetInspector.Create(asset);
+                if (middleMouseDown) OpenPropertiesEditorWindowDoubleClickListener.OpenInPropertyEditor(hoveredObject);
+                if (ProjectSetting.instance.DisplayContentOnMouseHover && IsAltDown()) PopUpAssetInspector.Create(hoveredObject);
             }
 
             EditorApplication.RepaintProjectWindow();
-
-            // }
         }
 
         private static void DrawQuad(Rect position , Color color)
