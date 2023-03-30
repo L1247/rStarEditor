@@ -22,18 +22,22 @@ namespace rStar.Editor
 
     #region Public Methods
 
-        public static void Create(Object asset)
+        public static void Create(Object obj)
         {
-            if (asset == null) return;
-            var titleText = $"{asset.name} | {asset.GetType().Name}";
+            if (obj == null) return;
+            var titleText = $"{obj.name} | {obj.GetType().Name}";
             var popUpAssetInspector = HasOpenInstances<PopUpAssetInspector>()
                     ? GetWindow<PopUpAssetInspector>()
                     : CreateWindow<PopUpAssetInspector>(titleText);
             popUpAssetInspector.titleContent = new GUIContent(titleText);
-            if (popUpAssetInspector.asset == asset) return;
+            if (popUpAssetInspector.asset == obj) return;
 
-            popUpAssetInspector.asset       = asset;
-            popUpAssetInspector.assetEditor = UnityEditor.Editor.CreateEditor(asset);
+            popUpAssetInspector.asset = obj;
+            if (obj is GameObject gameObject)
+                popUpAssetInspector.assetEditor = gameObject.GetComponent<Camera>()
+                        ? UnityEditor.Editor.CreateEditor(gameObject.GetComponent<Camera>())
+                        : UnityEditor.Editor.CreateEditor(gameObject.transform);
+            else popUpAssetInspector.assetEditor = UnityEditor.Editor.CreateEditor(obj);
         }
 
     #endregion
@@ -132,6 +136,7 @@ namespace rStar.Editor
             // if (focusedWindow == this) EditorGUI.DrawRect(new Rect(0 , 0 , position.width , position.height) , new Color(0.02f , 0.98f , 1f , 0.09f));
             // EditorGUITools.DrawRect(new Rect(0 , 0 , position.width , position.height) , new Color(0.5f , 0.5f , 0.5f , 1));
             ExampleDragDropGUI(EditorGUILayout.GetControlRect(GUILayout.Height(100)) , asset);
+            EditorGUILayout.LabelField("" , GUI.skin.horizontalSlider);
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
             assetEditor.OnInspectorGUI();
             EditorGUILayout.EndVertical();
