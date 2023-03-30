@@ -6,7 +6,7 @@ using UnityEngine;
 
 #endregion
 
-namespace Script.Editor
+namespace rStarEditor
 {
     /// <summary>
     ///     Listens <see cref="OnOpenAssetAttribute" /> (order 100) for everything except folders.

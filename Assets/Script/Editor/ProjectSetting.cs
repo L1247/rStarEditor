@@ -5,7 +5,7 @@ using UnityEngine;
 
 #endregion
 
-namespace Script.Editor
+namespace rStarEditor
 {
     public class ProjectSetting : ScriptableSingleton<ProjectSetting>
     {

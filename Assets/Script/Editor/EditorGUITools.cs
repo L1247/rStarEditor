@@ -4,7 +4,7 @@ using UnityEngine;
 
 #endregion
 
-namespace Script.Editor
+namespace rStarEditor
 {
     public static class EditorGUITools
     {

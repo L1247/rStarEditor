@@ -8,10 +8,10 @@ using Object = UnityEngine.Object;
 
 #endregion
 
-namespace Script.Editor
+namespace rStarEditor
 {
     [InitializeOnLoad]
-    public class ComponentXCreator : UnityEditor.Editor
+    public class ComponentXCreator : Editor
     {
     #region Private Variables
 
