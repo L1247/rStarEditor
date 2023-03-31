@@ -1,30 +1,19 @@
 #region
 
 using UnityEditor;
-using UnityEngine;
 
 #endregion
 
-namespace rStar.Editor
+namespace rStarEditor
 {
     [InitializeOnLoad]
-    public class rStarEditor : UnityEditor.Editor
+    public class rStarEditor : Editor
     {
-    #region Public Methods
+    #region Constructor
 
-        public override void OnInspectorGUI()
+        static rStarEditor()
         {
-            Debug.Log("InitializeOnLoad");
-            base.OnInspectorGUI();
-        }
-
-    #endregion
-
-    #region Private Methods
-
-        private void OnEnable()
-        {
-            Debug.Log("en");
+            ProjectSetting.instance.Load();
         }
 
     #endregion

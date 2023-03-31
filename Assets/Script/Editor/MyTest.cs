@@ -5,10 +5,10 @@ using UnityEngine;
 
 #endregion
 
-namespace Script.Editor
+namespace rStarEditor
 {
     [CustomEditor(typeof(ScriptableObject) , true)]
-    public class MyTest : UnityEditor.Editor
+    public class MyTest : Editor
     {
     #region Public Methods
 

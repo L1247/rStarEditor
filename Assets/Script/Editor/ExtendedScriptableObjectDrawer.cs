@@ -1,5 +1,5 @@
 // Must be placed within a folder named "Editor"
-namespace Script.Editor
+namespace rStarEditor
 {
     // // Developed by Tom Kail at Inkle
     // // Released under the MIT Licence as held at https://opensource.org/licenses/MIT

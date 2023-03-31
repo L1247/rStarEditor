@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: MonsterData
   m_EditorClassIdentifier: 
   b: 0
-  itemData: {fileID: 11400000, guid: 2e3ccdf5fa1a2b94db8769a897bdc517, type: 2}
+  itemData: {fileID: 11400000, guid: 8a1f3a92de9139e4f9c958e51f82066c, type: 2}
   a: 
