@@ -5,7 +5,7 @@ using UnityEngine;
 
 #endregion
 
-namespace Script.Editor
+namespace rStarEditor
 {
     public class MenuItem : EditorWindow
     {
@@ -14,8 +14,6 @@ namespace Script.Editor
         [UnityEditor.MenuItem("Tools/Test _h")]
         private static void ShowWindow()
         {
-            var objectsOfTypeAll = Resources.FindObjectsOfTypeAll<EditorWindow>();
-            Debug.Log($"{objectsOfTypeAll.Length}");
             Debug.Log($"{focusedWindow.GetType()}");
         }
 
