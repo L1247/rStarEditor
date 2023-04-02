@@ -1,6 +1,7 @@
 #region
 
 using System.Reflection;
+using rStar.Editor;
 using UnityEditor;
 using UnityEngine;
 
@@ -34,9 +35,12 @@ namespace rStarEditor
         {
             var target = editor.target;
             if (target != null)
-                if (GUILayout.Button("Ping" , EditorStyles.miniButton))
-                        // Debug.Log($"Ping");
-                    Selection.activeObject = target;
+                    // GUI.backgroundColor = new Color(0.02f , 0.98f , 1f);
+                using (new GUILayout.HorizontalScope())
+                {
+                    if (GUI.Button(EditorGUILayout.GetControlRect(GUILayout.Height(50)) , "Select")) Selection.activeObject = target;
+                    PopUpAssetInspector.ExampleDragDropGUI(EditorGUILayout.GetControlRect(GUILayout.Height(50)) , target);
+                }
         }
 
         private static void HandleFocusedPropertyWindow()

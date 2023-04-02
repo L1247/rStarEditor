@@ -40,25 +40,7 @@ namespace rStar.Editor
             else popUpAssetInspector.assetEditor = UnityEditor.Editor.CreateEditor(obj);
         }
 
-    #endregion
-
-    #region Private Methods
-
-        private static void CloseThisWindow()
-        {
-            GetWindow<PopUpAssetInspector>().Close();
-        }
-
-        private void DrawQuad(Rect position , Color color)
-        {
-            var texture = new Texture2D(1 , 1);
-            texture.SetPixel(0 , 0 , color);
-            texture.Apply();
-            GUI.skin.box.normal.background = texture;
-            GUI.Box(position , GUIContent.none);
-        }
-
-        private void ExampleDragDropGUI(Rect dropArea , Object obj)
+        public static void ExampleDragDropGUI(Rect dropArea , Object obj)
         {
             // Cache References:
             var currentEvent     = Event.current;
@@ -107,6 +89,24 @@ namespace rStar.Editor
             }
         }
 
+    #endregion
+
+    #region Private Methods
+
+        private static void CloseThisWindow()
+        {
+            GetWindow<PopUpAssetInspector>().Close();
+        }
+
+        private void DrawQuad(Rect position , Color color)
+        {
+            var texture = new Texture2D(1 , 1);
+            texture.SetPixel(0 , 0 , color);
+            texture.Apply();
+            GUI.skin.box.normal.background = texture;
+            GUI.Box(position , GUIContent.none);
+        }
+
         private bool IsSomethingWrong()
         {
             return asset == null || assetEditor == null;
@@ -133,9 +133,12 @@ namespace rStar.Editor
             GUI.enabled         = false;
             asset               = EditorGUILayout.ObjectField("Asset" , asset , asset.GetType() , false);
             GUI.enabled         = true;
-            // if (focusedWindow == this) EditorGUI.DrawRect(new Rect(0 , 0 , position.width , position.height) , new Color(0.02f , 0.98f , 1f , 0.09f));
-            // EditorGUITools.DrawRect(new Rect(0 , 0 , position.width , position.height) , new Color(0.5f , 0.5f , 0.5f , 1));
-            ExampleDragDropGUI(EditorGUILayout.GetControlRect(GUILayout.Height(100)) , asset);
+            using (new GUILayout.HorizontalScope())
+            {
+                if (GUI.Button(EditorGUILayout.GetControlRect(GUILayout.Height(50)) , "Select")) Selection.activeObject = asset;
+                ExampleDragDropGUI(EditorGUILayout.GetControlRect(GUILayout.Height(50)) , asset);
+            }
+
             EditorGUILayout.LabelField("" , GUI.skin.horizontalSlider);
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
             assetEditor.OnInspectorGUI();

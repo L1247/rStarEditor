@@ -41,8 +41,8 @@ namespace rStar.Editor
                 if (ProjectSetting.instance.DisplayContentOnMouseHover && IsAltDown())
                 {
                     var single = true;
-                    PropertyEditorManager.OpenInPropertyEditor(hoveredObject , single);
-                    // PopUpAssetInspector.Create(hoveredObject);
+                    if (hoveredObject is ScriptableObject) PopUpAssetInspector.Create(hoveredObject);
+                    else PropertyEditorManager.OpenInPropertyEditor(hoveredObject , single);
                     // if (hoveredObject is GameObject gameObject)
                     // FloatingWindow.Create(gameObject);
                 }

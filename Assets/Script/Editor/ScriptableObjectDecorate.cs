@@ -7,18 +7,18 @@ using UnityEngine;
 
 namespace rStarEditor
 {
-    [CustomEditor(typeof(ScriptableObject) , true)]
-    public class MyTest : Editor
+    // [CustomEditor(typeof(ScriptableObject) , true)]
+    public class ScriptableObjectDecorate : Editor
     {
     #region Public Methods
 
         public override void OnInspectorGUI()
         {
-            using (new GUILayout.HorizontalScope())
-            {
-                if (GUI.Button(EditorGUILayout.GetControlRect(GUILayout.Height(50)) , "Ping")) Selection.activeObject = target;
-                ExampleDragDropGUI(EditorGUILayout.GetControlRect(GUILayout.Height(50)) , target);
-            }
+            // using (new GUILayout.HorizontalScope())
+            // {
+            //     if (GUI.Button(EditorGUILayout.GetControlRect(GUILayout.Height(50)) , "Ping")) Selection.activeObject = target;
+            //     ExampleDragDropGUI(EditorGUILayout.GetControlRect(GUILayout.Height(50)) , target);
+            // }
 
             base.OnInspectorGUI();
         }
