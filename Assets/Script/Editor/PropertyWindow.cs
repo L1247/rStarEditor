@@ -38,7 +38,10 @@ namespace rStar.Editor
                 var hoveredObject = EditorUtility.InstanceIDToObject(instanceID);
                 DrawQuad(rect , Color.red);
                 if (middleMouseDown) OpenPropertiesEditorWindowDoubleClickListener.OpenInPropertyEditor(hoveredObject);
-                if (ProjectSetting.instance.DisplayContentOnMouseHover && IsAltDown()) PopUpAssetInspector.Create(hoveredObject);
+                if (ProjectSetting.instance.DisplayContentOnMouseHover && IsAltDown())
+                        // PopUpAssetInspector.Create(hoveredObject);
+                    if (hoveredObject is GameObject gameObject)
+                        FloatingWindow.Create(gameObject);
             }
 
             EditorApplication.RepaintProjectWindow();
