@@ -21,9 +21,10 @@ namespace rStarEditor
 
     #region Private Variables
 
-        private GameObject gameObject;
-        private GameObject cacheGameObject;
-        private Editor     gameObjectEditor;
+        private GameObject           gameObject;
+        private GameObject           cacheGameObject;
+        private Editor               gameObjectEditor;
+        private PreviewRenderUtility previewUtility;
 
     #endregion
 
@@ -42,6 +43,24 @@ namespace rStarEditor
             window.gameObject = gameObject;
         }
 
+        public void OnDisable()
+        {
+            if (previewUtility is not null)
+            {
+                previewUtility.Cleanup();
+                previewUtility = null;
+            }
+        }
+
+        public void OnEnable()
+        {
+            // var root = rootVisualElement;
+            //
+            // VisualElement label = new Label("Hello World!");
+            // root.Add(label);
+            previewUtility ??= new PreviewRenderUtility();
+        }
+
     #endregion
 
     #region Private Methods
@@ -53,7 +72,11 @@ namespace rStarEditor
 
             if (gameObject != null)
             {
-                if (gameObjectEditor == null || cacheGameObject != gameObject) gameObjectEditor = Editor.CreateEditor(gameObject);
+                if (gameObjectEditor == null || cacheGameObject != gameObject)
+                {
+                    gameObjectEditor = Editor.CreateEditor(gameObject);
+                    Repaint();
+                }
 
                 var rect = GUILayoutUtility.GetRect(256 , 256);
                 gameObjectEditor.OnInteractivePreviewGUI(rect , bgColor);
@@ -82,13 +105,5 @@ namespace rStarEditor
         }
 
     #endregion
-
-        // public void OnEnable()
-        // {
-        //     var root = rootVisualElement;
-        //
-        //     VisualElement label = new Label("Hello World!");
-        //     root.Add(label);
-        // }
     }
 }

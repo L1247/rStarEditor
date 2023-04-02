@@ -15,17 +15,6 @@ namespace rStarEditor
     /// </summary>
     public static class OpenPropertiesEditorWindowDoubleClickListener
     {
-    #region Public Methods
-
-        public static bool OpenInPropertyEditor(Object asset)
-        {
-            if (asset is SceneAsset) return false;
-            EditorUtility.OpenPropertyEditor(asset);
-            return true;
-        }
-
-    #endregion
-
     #region Private Methods
 
         /// <summary>
@@ -46,7 +35,7 @@ namespace rStarEditor
 
             if (IsFolder(obj)) return false;
 
-            return OpenInPropertyEditor(obj);
+            return PropertyEditorManager.OpenInPropertyEditor(obj);
         }
 
         private static bool IsFolder(Object obj)
