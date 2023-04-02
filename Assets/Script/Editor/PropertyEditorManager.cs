@@ -53,8 +53,8 @@ namespace rStarEditor
                     var propertyEditorInstance =
                             openPropertyEditorMethod.Invoke(singlePropertyEditorWindow , new object[] { asset , false }) as
                                     EditorWindow;
-                    singlePropertyEditorWindow.Close();
                     var position = singlePropertyEditorWindow.position;
+                    singlePropertyEditorWindow.Close();
                     propertyEditorInstance.position = new Rect(position.x , position.y , position.width , position.height);
                     propertyEditorInstance.Show();
                     singlePropertyEditorWindow = propertyEditorInstance;
