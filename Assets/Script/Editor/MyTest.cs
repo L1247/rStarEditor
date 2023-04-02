@@ -78,7 +78,7 @@ namespace rStarEditor
 
         private void OnEnable()
         {
-            Debug.Log("ScriptableObject");
+            // Debug.Log("ScriptableObject");
         }
 
     #endregion
