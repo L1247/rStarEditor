@@ -38,7 +38,7 @@ namespace rStar.Editor
                 var hoveredObject = EditorUtility.InstanceIDToObject(instanceID);
                 DrawQuad(rect , Color.red);
                 if (middleMouseDown) PropertyEditorManager.OpenInPropertyEditor(hoveredObject);
-                if (ProjectSetting.instance.DisplayContentOnMouseHover && IsAltDown())
+                if (ProjectSetting.instance.DisplayContentOnMouseHover && IsDisplayKeyDown())
                 {
                     var single = true;
                     if (hoveredObject is ScriptableObject) PopUpAssetInspector.Create(hoveredObject);
@@ -60,17 +60,9 @@ namespace rStar.Editor
             GUI.Box(position , GUIContent.none);
         }
 
-        private static void DrawQuadtexture(Rect rect)
+        private static bool IsDisplayKeyDown()
         {
-            var texture = new Texture2D(1 , 1);
-            texture.SetPixel(0 , 0 , Color.red);
-            texture.Apply();
-            GUI.DrawTexture(rect , texture , ScaleMode.StretchToFill , false);
-        }
-
-        private static bool IsAltDown()
-        {
-            return Event.current.modifiers == EventModifiers.Alt;
+            return Event.current.modifiers == EventModifiers.Shift;
         }
 
     #endregion

@@ -98,15 +98,6 @@ namespace rStar.Editor
             GetWindow<PopUpAssetInspector>().Close();
         }
 
-        private void DrawQuad(Rect position , Color color)
-        {
-            var texture = new Texture2D(1 , 1);
-            texture.SetPixel(0 , 0 , color);
-            texture.Apply();
-            GUI.skin.box.normal.background = texture;
-            GUI.Box(position , GUIContent.none);
-        }
-
         private bool IsSomethingWrong()
         {
             return asset == null || assetEditor == null;
