@@ -62,7 +62,7 @@ namespace rStar.Editor
 
         private static bool IsDisplayKeyDown()
         {
-            return Event.current.modifiers == EventModifiers.Shift;
+            return Event.current.modifiers == EventModifiers.Control;
         }
 
     #endregion
