@@ -36,7 +36,7 @@ namespace rStar.Editor
             if (contains)
             {
                 var hoveredObject = EditorUtility.InstanceIDToObject(instanceID);
-                DrawQuad(rect , Color.red);
+                DrawQuad(rect , new Color(1 , 1 , 1 , 0.15f));
                 var assetPath     = AssetDatabase.GetAssetPath(instanceID);
                 var isValidFolder = AssetDatabase.IsValidFolder(assetPath);
                 if (isValidFolder) return;
