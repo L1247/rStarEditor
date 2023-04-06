@@ -59,8 +59,9 @@ namespace rStar.Editor
             var texture = new Texture2D(1 , 1);
             texture.SetPixel(0 , 0 , color);
             texture.Apply();
-            GUI.skin.box.normal.background = texture;
-            GUI.Box(position , GUIContent.none);
+            var style = new GUIStyle("Box");
+            style.normal.background = texture;
+            GUI.Box(position , GUIContent.none , style);
         }
 
         private static bool IsDisplayKeyDown()
