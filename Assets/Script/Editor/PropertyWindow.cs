@@ -37,6 +37,9 @@ namespace rStar.Editor
             {
                 var hoveredObject = EditorUtility.InstanceIDToObject(instanceID);
                 DrawQuad(rect , Color.red);
+                var assetPath     = AssetDatabase.GetAssetPath(instanceID);
+                var isValidFolder = AssetDatabase.IsValidFolder(assetPath);
+                if (isValidFolder) return;
                 if (middleMouseDown) PropertyEditorManager.OpenInPropertyEditor(hoveredObject);
                 if (ProjectSetting.instance.DisplayContentOnMouseHover && IsDisplayKeyDown())
                 {
