@@ -126,7 +126,7 @@ namespace rStar.Editor
             GUI.enabled         = true;
             using (new GUILayout.HorizontalScope())
             {
-                if (GUI.Button(EditorGUILayout.GetControlRect(GUILayout.Height(50)) , "Select")) Selection.activeObject = asset;
+                if (GUI.Button(EditorGUILayout.GetControlRect(GUILayout.Height(50)) , "Select")) EditorGUIUtility.PingObject(asset);
                 ExampleDragDropGUI(EditorGUILayout.GetControlRect(GUILayout.Height(50)) , asset);
             }
 

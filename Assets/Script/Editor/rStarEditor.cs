@@ -38,7 +38,8 @@ namespace rStarEditor
                     // GUI.backgroundColor = new Color(0.02f , 0.98f , 1f);
                 using (new GUILayout.HorizontalScope())
                 {
-                    if (GUI.Button(EditorGUILayout.GetControlRect(GUILayout.Height(50)) , "Select")) Selection.activeObject = target;
+                    if (GUI.Button(EditorGUILayout.GetControlRect(GUILayout.Height(50)) , "Select"))
+                        EditorGUIUtility.PingObject(target);
                     PopUpAssetInspector.ExampleDragDropGUI(EditorGUILayout.GetControlRect(GUILayout.Height(50)) , target);
                 }
         }

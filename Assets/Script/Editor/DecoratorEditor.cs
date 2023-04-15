@@ -17,23 +17,6 @@ namespace rStarEditor
     /// </summary>
     public abstract class DecoratorEditor : Editor
     {
-    #region Protected Variables
-
-        protected Editor EditorInstance
-        {
-            get
-            {
-                if (editorInstance == null && targets != null && targets.Length > 0)
-                    editorInstance = CreateEditor(targets , decoratedEditorType);
-
-                if (editorInstance == null) Debug.LogError("Could not create editor !");
-
-                return editorInstance;
-            }
-        }
-
-    #endregion
-
     #region Private Variables
 
         // empty array for invoking methods using reflection
@@ -54,6 +37,19 @@ namespace rStarEditor
         private Type editedObjectType;
 
         private Editor editorInstance;
+
+        private Editor EditorInstance
+        {
+            get
+            {
+                if (editorInstance == null && targets != null && targets.Length > 0)
+                    editorInstance = CreateEditor(targets , decoratedEditorType);
+
+                if (editorInstance == null) Debug.LogError("Could not create editor !");
+
+                return editorInstance;
+            }
+        }
 
     #endregion
 
