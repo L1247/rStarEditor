@@ -18,10 +18,14 @@ namespace rStarEditor
             windows.FirstOrDefault(IsPropertyEditor)?.Focus();
         }
 
+        public static bool IsPackageManagerWindow(EditorWindow focusedWindow)
+        {
+            return focusedWindow.GetType().ToString() == "UnityEditor.PackageManager.UI.PackageManagerWindow";
+        }
+
         public static bool IsPropertyEditor(EditorWindow focusedWindow)
         {
-            var isPropertyEditor = focusedWindow.GetType().ToString() == "UnityEditor.PropertyEditor";
-            return isPropertyEditor;
+            return focusedWindow.GetType().ToString() == "UnityEditor.PropertyEditor";
         }
 
     #endregion

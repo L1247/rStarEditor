@@ -51,9 +51,11 @@ namespace rStarEditor
             var focusedWindow = EditorWindow.focusedWindow;
             if (focusedWindow == null) return;
             var isPropertyEditor = EditorWindowUtility.IsPropertyEditor(focusedWindow);
+            var isPackageWindow = EditorWindowUtility.IsPackageManagerWindow(focusedWindow);
             var escToCloseWindow = ProjectSetting.instance.EscToCloseWindow;
-            var escPressed       = Event.current.keyCode == KeyCode.Escape && Event.current.type == EventType.KeyDown;
-            if (isPropertyEditor && escPressed && escToCloseWindow)
+            var escPressed = Event.current.keyCode == KeyCode.Escape && Event.current.type is EventType.KeyDown or EventType.KeyUp;
+            var isTargetWindow = isPropertyEditor || isPackageWindow;
+            if (isTargetWindow && escPressed && escToCloseWindow)
             {
                 focusedWindow.Close();
                 EditorWindowUtility.FocusPropertyEditorWindow();

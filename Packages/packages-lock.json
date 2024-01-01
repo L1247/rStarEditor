@@ -1,5 +1,19 @@
 {
   "dependencies": {
+    "com.baba-s.kogane-check-box-window": {
+      "version": "https://github.com/baba-s/Kogane.CheckBoxWindow.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "b8b4b782e4673dedae1974d33cff23141d4c5ba7"
+    },
+    "com.baba-s.kogane-json-assembly-definition": {
+      "version": "https://github.com/baba-s/Kogane.JsonAssemblyDefinition.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "45e6f694b63f943e90ef13c40b276cd54316c345"
+    },
     "com.unity.ext.nunit": {
       "version": "1.0.6",
       "depth": 1,

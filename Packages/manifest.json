@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "com.baba-s.kogane-check-box-window": "https://github.com/baba-s/Kogane.CheckBoxWindow.git",
+    "com.baba-s.kogane-json-assembly-definition": "https://github.com/baba-s/Kogane.JsonAssemblyDefinition.git",
     "com.unity.ide.rider": "3.0.18",
     "com.unity.textmeshpro": "3.0.6",
     "com.unity.ugui": "1.0.0",
