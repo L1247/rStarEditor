@@ -18,7 +18,7 @@ namespace rStarEditor
         {
             ProjectSetting.instance.Load();
             RegisterKeyPress();
-            finishedDefaultHeaderGUI += EditorOnfinishedDefaultHeaderGUI;
+            finishedDefaultHeaderGUI += EditorOnFinishedDefaultHeaderGUI;
         }
 
     #endregion
@@ -31,7 +31,7 @@ namespace rStarEditor
             HandleFocusedPropertyWindow();
         }
 
-        private static void EditorOnfinishedDefaultHeaderGUI(Editor editor)
+        private static void EditorOnFinishedDefaultHeaderGUI(Editor editor)
         {
             var target = editor.target;
             if (target != null)
@@ -40,7 +40,8 @@ namespace rStarEditor
                 {
                     if (GUI.Button(EditorGUILayout.GetControlRect(GUILayout.Height(50)) , "Select"))
                         EditorGUIUtility.PingObject(target);
-                    PopUpAssetInspector.ExampleDragDropGUI(EditorGUILayout.GetControlRect(GUILayout.Height(50)) , target);
+                    PopUpAssetInspector.ExampleDragDropGUI(EditorGUILayout.GetControlRect(GUILayout.Height(50)) ,
+                                                           target);
                 }
         }
 
