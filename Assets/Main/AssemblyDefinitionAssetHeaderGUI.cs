@@ -49,17 +49,17 @@ namespace Main
         #region Public Variables
 
             public bool   IsChecked { get; set; }
+            public string GUID      { get; }
             public string Name      { get; }
 
         #endregion
 
         #region Constructor
 
-            public Data(string reference , bool isChecked)
+            public Data(string guid , string name , bool isChecked)
             {
-                var isGUID            = reference.Contains("GUID:");
-                if (isGUID) reference = reference.Replace("GUID:" , string.Empty);
-                Name      = reference;
+                GUID      = guid;
+                Name      = name;
                 IsChecked = isChecked;
             }
 
@@ -111,13 +111,13 @@ namespace Main
                 if (useGUIDs)
                     dataArray = assemblyDefinitionAssets
                                .Select(info =>
-                                               new Data($"GUID:{info.GUID}" , referenceArray.Contains($"GUID:{info.GUID}")))
+                                               new Data(info.GUID , info.Name , referenceArray.Contains($"GUID:{info.GUID}")))
                                .ToArray();
                 else
                     dataArray = assemblyDefinitionAssets
                                .Select(info => info.Name)
                                .Select(assemblyName =>
-                                               new Data(assemblyName , referenceArray.Contains(assemblyName)))
+                                               new Data(assemblyName , assemblyName , referenceArray.Contains(assemblyName)))
                                .ToArray();
 
                 CheckBoxWindow.Open
@@ -133,7 +133,7 @@ namespace Main
 
                     var newReferences = dataArray
                                        .Where(x => x.IsChecked)
-                                       .Select(x => useGUIDs ? $"GUID:{x.Name}" : $"{x.Name}")
+                                       .Select(x => useGUIDs ? $"GUID:{x.GUID}" : $"{x.Name}")
                                        .ToArray();
 
                     if (oldReferences.SequenceEqual(newReferences)) return;
