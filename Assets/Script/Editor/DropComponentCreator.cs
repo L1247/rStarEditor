@@ -11,7 +11,7 @@ using Object = UnityEngine.Object;
 namespace rStarEditor
 {
     [InitializeOnLoad]
-    public class ComponentXCreator : Editor
+    public class DropComponentCreator : Editor
     {
     #region Private Variables
 
@@ -21,7 +21,7 @@ namespace rStarEditor
 
     #region Constructor
 
-        static ComponentXCreator()
+        static DropComponentCreator()
         {
             EditorApplication.hierarchyWindowItemOnGUI += HierarchyWindowItemCallback;
             EditorApplication.hierarchyWindowChanged   += HierarchyWindowChanged;
@@ -63,10 +63,12 @@ namespace rStarEditor
                 var isTexture2D    = objectRef is Texture2D;
                 if (isEditorScript == false && isTexture2D == false) break;
                 var scriptName = objectRef.name;
-                var type       = GetType(scriptName);
-                if (type is null) return;
-                if (type.BaseType != typeof(MonoBehaviour)) continue;
-                var gameObject = new GameObject(objectRef.name);
+                var dropType   = GetType(scriptName);
+                if (dropType is null) return;
+                var isMonoBehaviour = dropType.BaseType != typeof(MonoBehaviour);
+                if (isMonoBehaviour) continue;
+                var gameObject = new GameObject(scriptName);
+                gameObject.AddComponent(dropType);
                 selectedObjects.Add(gameObject);
             }
 
