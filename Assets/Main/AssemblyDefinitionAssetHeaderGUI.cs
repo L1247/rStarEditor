@@ -111,7 +111,7 @@ namespace Main
                 if (useGUIDs)
                     dataArray = assemblyDefinitionAssets
                                .Select(info =>
-                                               new Data(info.Name , referenceArray.Contains($"GUID:{info.GUID}")))
+                                               new Data($"GUID:{info.GUID}" , referenceArray.Contains($"GUID:{info.GUID}")))
                                .ToArray();
                 else
                     dataArray = assemblyDefinitionAssets
@@ -133,7 +133,7 @@ namespace Main
 
                     var newReferences = dataArray
                                        .Where(x => x.IsChecked)
-                                       .Select(x => $"{x.Name}")
+                                       .Select(x => useGUIDs ? $"GUID:{x.Name}" : $"{x.Name}")
                                        .ToArray();
 
                     if (oldReferences.SequenceEqual(newReferences)) return;
