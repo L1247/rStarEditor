@@ -81,9 +81,9 @@ namespace Main
 
         private static void OnGUI(Editor editor)
         {
-            var assemblyDefinitionImporter = editor.target as AssemblyDefinitionImporter;
-
-            if (assemblyDefinitionImporter == null) return;
+            var assemblyDefinitionImporter   = editor.target as AssemblyDefinitionImporter;
+            var isAssemblyDefinitionImporter = assemblyDefinitionImporter == null;
+            if (isAssemblyDefinitionImporter) return;
 
             var assetPath              = assemblyDefinitionImporter.assetPath;
             var json                   = File.ReadAllText(assetPath);
