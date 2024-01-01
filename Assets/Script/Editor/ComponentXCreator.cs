@@ -64,11 +64,10 @@ namespace rStarEditor
                 if (isEditorScript == false && isTexture2D == false) break;
                 var scriptName = objectRef.name;
                 var type       = GetType(scriptName);
-                if (type.BaseType == typeof(MonoBehaviour))
-                {
-                    var gameObject = new GameObject(objectRef.name);
-                    selectedObjects.Add(gameObject);
-                }
+                if (type is null) return;
+                if (type.BaseType != typeof(MonoBehaviour)) continue;
+                var gameObject = new GameObject(objectRef.name);
+                selectedObjects.Add(gameObject);
             }
 
             if (selectedObjects.Count == 0) return;
