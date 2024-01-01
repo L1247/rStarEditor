@@ -49,7 +49,7 @@ namespace rStar.Editor
         [SettingsProvider]
         public static SettingsProvider CreateMySingletonProvider()
         {
-            var provider = new ProjectPreferencesDrawer("rStarEditor/ProjectSetting" , SettingsScope.User ,
+            var provider = new ProjectPreferencesDrawer("rStarEditor/Settings" , SettingsScope.User ,
                                                         GetSearchKeywordsFromGUIContentProperties<Styles>());
             return provider;
         }
