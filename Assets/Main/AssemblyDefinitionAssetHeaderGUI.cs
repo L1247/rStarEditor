@@ -35,7 +35,6 @@ namespace Main
             {
                 var guidToAssetPath         = AssetDatabase.GUIDToAssetPath(guid);
                 var assemblyDefinitionAsset = AssetDatabase.LoadAssetAtPath<AssemblyDefinitionAsset>(guidToAssetPath);
-                var assetExist              = assemblyDefinitionAsset != null;
                 var jsonAssemblyDefinition  = JsonUtility.FromJson<JsonAssemblyDefinition>(assemblyDefinitionAsset.text);
                 Name = jsonAssemblyDefinition.name;
                 GUID = guid;
