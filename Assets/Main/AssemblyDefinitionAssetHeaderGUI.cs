@@ -106,7 +106,7 @@ namespace Main
 
             if (GUILayout.Button("Select References"))
             {
-                var dataArray = new Data[] { };
+                Data[] dataArray;
                 if (useGUIDs)
                     dataArray = assemblyDefinitionAssets
                                .Select(info =>
