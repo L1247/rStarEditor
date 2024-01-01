@@ -34,15 +34,16 @@ namespace rStarEditor
         private static void EditorOnFinishedDefaultHeaderGUI(Editor editor)
         {
             var target = editor.target;
-            if (target != null)
-                    // GUI.backgroundColor = new Color(0.02f , 0.98f , 1f);
-                using (new GUILayout.HorizontalScope())
-                {
-                    if (GUI.Button(EditorGUILayout.GetControlRect(GUILayout.Height(50)) , "Select"))
-                        EditorGUIUtility.PingObject(target);
-                    PopUpAssetInspector.ExampleDragDropGUI(EditorGUILayout.GetControlRect(GUILayout.Height(50)) ,
-                                                           target);
-                }
+            if (target == null) return;
+            var targetType = target.GetType();
+            if (targetType == typeof(MonoScript)) return;
+            // GUI.backgroundColor = new Color(0.02f , 0.98f , 1f);
+            using (new GUILayout.HorizontalScope())
+            {
+                if (GUI.Button(EditorGUILayout.GetControlRect(GUILayout.Height(50)) , "Select")) EditorGUIUtility.PingObject(target);
+                PopUpAssetInspector.ExampleDragDropGUI(EditorGUILayout.GetControlRect(GUILayout.Height(50)) ,
+                                                       target);
+            }
         }
 
         private static void HandleFocusedPropertyWindow()
