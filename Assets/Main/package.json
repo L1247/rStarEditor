@@ -2,10 +2,12 @@
   "name": "com.rstar.editorforunity",
   "displayName": "rStar - Editor",
   "description": "more powerful features for unity editor.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "unity": "2022.2",
   "unityRelease": "0f1",
   "dependencies": {
+    "com.baba-s.kogane-json-assembly-definition": "https://github.com/baba-s/Kogane.JsonAssemblyDefinition.git",
+    "com.baba-s.kogane-check-box-window": "https://github.com/baba-s/Kogane.CheckBoxWindow.git"
   },
   "author": {
     "name": "rStar"
