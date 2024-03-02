@@ -89,7 +89,7 @@ namespace rStarEditor
             Repaint();
         }
 
-        [UnityEditor.MenuItem("Example/Randomize Children In Selection _g")]
+        // [UnityEditor.MenuItem("Example/Randomize Children In Selection _g")]
         private static void RandomizeWindow()
         {
             if (HasOpenInstances<FloatingWindow>())
