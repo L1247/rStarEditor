@@ -6,8 +6,8 @@
   "unity": "2022.2",
   "unityRelease": "0f1",
   "dependencies": {
-    "com.baba-s.kogane-json-assembly-definition": "https://github.com/baba-s/Kogane.JsonAssemblyDefinition.git",
-    "com.baba-s.kogane-check-box-window": "https://github.com/baba-s/Kogane.CheckBoxWindow.git"
+    "com.baba-s.kogane-json-assembly-definition": "1.0.0",
+    "com.baba-s.kogane-check-box-window": "1.0.0"
   },
   "author": {
     "name": "rStar"
